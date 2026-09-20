@@ -183,15 +183,18 @@ first).
 
 ```bash
 npm test                    # unit tests; no dependencies (uses Node's built-in runner)
-./scripts/dev-install.sh    # copy into ~/.config/omarchy/plugins/ and rescan
 omarchy plugin validate .   # check the manifest
 ```
 
+`omarchy plugin add` leaves a git checkout in `~/.config/omarchy/plugins/`, so you can
+edit and test right there: saved QML changes reload automatically, and changes to
+`lib/*.js` need `omarchy restart shell`. Or clone this repo elsewhere, make your
+changes, and copy them over.
+
 The logic lives in pure JavaScript under `lib/` and is tested against synthetic
-log lines; the QML files are a thin layer over it. Editing a `lib/*.js` file
-needs `omarchy restart shell` (QML caches library scripts). See
-[`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) for the design and the
-measurements behind it.
+log lines; the QML files are a thin layer over it (QML caches library scripts,
+hence the restart above). See [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) for the
+design and the measurements behind it.
 
 ## License
 
