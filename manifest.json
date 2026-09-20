@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Ronald Craig",
   "license": "MIT",
-  "description": "A flight recorder for your hardware. Decodes GPU, PCIe, memory, storage and CPU faults from the kernel log in plain English, and tells you when your last session ended without a clean shutdown.",
+  "description": "Decodes GPU, PCIe, memory and storage faults from the kernel log and flags sessions that ended without a clean shutdown.",
   "kinds": ["service", "bar-widget"],
   "entryPoints": {
     "service": "Service.qml",
