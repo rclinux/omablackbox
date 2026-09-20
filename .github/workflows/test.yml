@@ -1,0 +1,24 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Unit tests
+        run: node --test test/
+      - name: Manifest is valid JSON with the required fields
+        run: |
+          node -e '
+            const m = JSON.parse(require("fs").readFileSync("manifest.json", "utf8"));
+            for (const k of ["schemaVersion","id","name","version","author","description","kinds","entryPoints"]) if (!(k in m)) throw new Error("missing " + k);
+            if (m.id.startsWith("omarchy.")) throw new Error("third-party ids cannot use omarchy.*");
+            console.log("manifest ok:", m.id, m.version);
+          '
+      - name: Generated docs are up to date
+        run: |
+          node scripts/gen-detectors-doc.mjs
+          git diff --exit-code docs/DETECTORS.md

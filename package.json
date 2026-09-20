@@ -1,0 +1,11 @@
+{
+  "name": "omablackbox",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Test runner for the OmaBlackbox Omarchy plugin. The plugin itself has no dependencies.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test test/",
+    "docs": "node scripts/gen-detectors-doc.mjs"
+  }
+}

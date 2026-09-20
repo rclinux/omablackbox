@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.rclinux.omablackbox",
+  "name": "OmaBlackbox",
+  "version": "0.1.0",
+  "author": "Ronald Craig",
+  "license": "MIT",
+  "description": "A flight recorder for your hardware. Decodes GPU, PCIe, memory, storage and CPU faults from the kernel log in plain English, and tells you when your last session ended without a clean shutdown.",
+  "kinds": ["service", "bar-widget"],
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "OmaBlackbox",
+    "description": "A quiet dot that lights up when the kernel reports a hardware fault, with a timeline of what happened.",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "scanDays": 14,
+      "maxBoots": 30,
+      "minSeverity": "warning",
+      "notify": true,
+      "redact": true,
+      "showWhenClear": true,
+      "animate": true,
+      "preview": "off"
+    },
+    "schema": [
+      { "key": "minSeverity", "type": "enum", "label": "Show events of at least", "options": ["notice", "warning", "critical"], "defaultValue": "warning", "description": "Notice includes corrected PCIe errors and kernel warnings, which are usually harmless." },
+      { "key": "scanDays", "type": "integer", "label": "History (days)", "min": 1, "max": 90, "step": 1, "defaultValue": 14, "description": "How far back to look in the journal." },
+      { "key": "maxBoots", "type": "integer", "label": "Sessions to scan", "min": 1, "max": 100, "step": 1, "defaultValue": 30, "description": "Finished sessions are cached, so a high number costs almost nothing after the first run." },
+      { "key": "notify", "type": "boolean", "label": "Desktop notifications", "defaultValue": true, "description": "Announce a new critical event, and a session that ended without a clean shutdown." },
+      { "key": "redact", "type": "boolean", "label": "Mask identifiers", "defaultValue": true, "description": "Mask MAC and IP addresses, UUIDs, serial numbers and home paths in the panel and in reports." },
+      { "key": "showWhenClear", "type": "boolean", "label": "Show when all is quiet", "defaultValue": true },
+      { "key": "animate", "type": "boolean", "label": "Pulse on critical events", "defaultValue": true },
+      { "key": "preview", "type": "enum", "label": "Preview with sample events", "options": ["off", "events", "quiet", "no-access"], "defaultValue": "off", "description": "Shows sample data so you can see how OmaBlackbox looks. Nothing is read from your journal, saved or announced while a preview is on." }
+    ]
+  }
+}
