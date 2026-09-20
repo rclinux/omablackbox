@@ -5,7 +5,7 @@
   "description": "Test runner for the OmaBlackbox Omarchy plugin. The plugin itself has no dependencies.",
   "license": "MIT",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test test/*.test.mjs",
     "docs": "node scripts/gen-detectors-doc.mjs"
   }
 }

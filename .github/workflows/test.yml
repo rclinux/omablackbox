@@ -9,7 +9,7 @@ jobs:
         with:
           node-version: 22
       - name: Unit tests
-        run: node --test test/
+        run: node --test test/*.test.mjs
       - name: Manifest is valid JSON with the required fields
         run: |
           node -e '
