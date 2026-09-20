@@ -175,6 +175,9 @@ first).
   line to decode. The "session ended without a clean shutdown" note is exactly
   for that case.
 - The interface is in English.
+- It has only been tested on a single-monitor setup. With several monitors the widgets
+  are designed to share one engine, but that path hasn't been exercised on real
+  multi-monitor hardware yet.
 
 ## Development
 
